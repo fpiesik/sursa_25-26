@@ -63,6 +63,7 @@ end
 
 
 function _draw()
+ ss_menu()
 	cls()
 	map(titelx,titely)
 	if animation==true or move==true then spr(table1,0,45,4,4) end
@@ -459,6 +460,15 @@ function _tm()
 	if ty==72.5 and hide7==true and check==7 then win=true end 	
 	if ty==72.5 and hide8==true and check==8 then win=true end
 end
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
+
 __gfx__
 00000000444444444444111144444444444444440000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 00000000447447444411181111444744447447440000000000000000000000000000000000000000000000000000000000000000000000000000000000000000

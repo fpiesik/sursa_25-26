@@ -14,6 +14,7 @@ function _init()
 end
 
 function _draw()
+ ss_menu()
 	zeit:upd()
 	cls(7)
 	map()
@@ -171,6 +172,15 @@ zeit = {
 		spr(s.sprts[s.frm],s.x+s.br-4,s.y)
 	end
 }
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000000000000000000000000000000000055555000555550005555500055555040000400000000007777777700000000666666660555555505555555

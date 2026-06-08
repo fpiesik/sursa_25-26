@@ -8,6 +8,7 @@ coll = 0
 won = 0
 
 function _draw()
+ ss_menu()
 	if coll > 0 then
 		cls(14)
 		print("gameover", 50+x, 60,8)
@@ -104,6 +105,15 @@ function collision( r1, r2 )
 	end
 	
 end
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
+
 __gfx__
 7776677744444444bbbbbbbb777777770000000077777777000000007777777777777777555555557777777777777777cc5ccccccc5cccc56666666677777777
 7777767746664466bbbbbbbb777777770000000077755777000000007666666777777777555555557777777777575757c55555ccc55555556666666677777777

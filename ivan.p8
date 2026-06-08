@@ -9,6 +9,7 @@ cls(6)
 map()
 
 function _draw()
+ ss_menu()
 spr(1,xt,yt,2,2)
 if btn(⬆️) then spr(39,sx-170,sy-150,1,1)
 end
@@ -46,6 +47,15 @@ end
 
 
 
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000000fffff00000444477777777444400000ffffff0000000000ffffff0000077777777666666660000000000000000000000000000000000000000

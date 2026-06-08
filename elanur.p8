@@ -13,6 +13,7 @@ function _init()
 end
 
 function _draw()
+ ss_menu()
 	if gmo == 1 then
 		cls(12)
 		print("gmo",x+50,50,8)
@@ -66,6 +67,15 @@ function drw_avatar(x,y)
 	?frame
 end
 	
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
+
 __gfx__
 0000000000000300030000000000000000000000000000005555555500000000000000000000000000000000060006000000000000000000aaaaaaaa00000000
 0000000000003333330000000600006000000000000000005555555500600000000000000000000000060000060066000000000000000000aaaaaaaa00000000

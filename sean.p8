@@ -16,6 +16,7 @@ punkte=0
 verloren=false
 
 function _draw()
+ ss_menu()
  cls()
  
  if verloren then
@@ -81,6 +82,15 @@ function _update60()
   end                           
  end                            
 end                            
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000011100000000080080000000

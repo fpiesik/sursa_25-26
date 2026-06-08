@@ -97,6 +97,7 @@ function is_solid(x,y,t)
 end
 
 function _draw()
+ ss_menu()
  cls()
  map()
  if lives == 3 then print("♥ ♥ ♥",55,38,8) end
@@ -123,6 +124,15 @@ function _draw()
  --pset(flr(pl.x+15),flr(pl.y),11)
  --pset(flr(pl.x+15),flr(pl.y+15),11)
 end
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
+
 __gfx__
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007777777777777777
 00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000007777777776666667
