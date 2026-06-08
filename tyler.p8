@@ -87,6 +87,7 @@ player.y = mid(0, player.y, 120)
 end
 
 function _draw()
+ ss_menu()
 	cls(12)
 	if won == 0 then
 	if hit == 0 then
@@ -275,6 +276,15 @@ zeit = {
 pl1 = { x=1, y=59, w=8, h=8 }
 sa2 = { x=96, y=64, w=8, h=8 }
 
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000990999000990099000099008888000000000000000000000000000000000055555555666666660000000000000000000000000000000000000000

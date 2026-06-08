@@ -15,6 +15,7 @@ music(00)
 	zeit:init()
  end
 function _draw()
+ ss_menu()
 	if btn(0) then 
   x = x - s 
   f = f + 1
@@ -202,6 +203,15 @@ zeit = {
 		spr(s.sprts[s.frm],s.x+s.br-4,s.y)
 	end
 }
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000000000000000000000000000000000000000077777777bbbbbbbb788888887888888777777777777777776666666688888888aaa7aaa77a77a777

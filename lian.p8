@@ -13,6 +13,7 @@ function _update()
 end
 
 function _draw()
+ ss_menu()
 	cls(12)
 	map()
 	zeit:drw()
@@ -66,6 +67,15 @@ zeit = {
 	
 	end
 }
+
+-->8
+-- multi-cart helper
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  load("surviving_sandwehen.p8")
+ end
+end
 
 __gfx__
 00000000000000005555555555000000555555555555555555555555555555550000000000000646886465888885000000000000000000000000000000000000
