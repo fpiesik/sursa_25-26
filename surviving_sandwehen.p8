@@ -7,7 +7,7 @@ __lua__
 -- student mini-game cart
 
 levels={
- {"alina",   "mensa escape"},
+ {"sam",   "mensa escape"},
  {"alissa",  "schulweg"},
  {"damon",   "wort-sortierer"},
  {"elanur",  "hindernislauf"},
