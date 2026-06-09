@@ -38,6 +38,7 @@ function _draw()
  print("und abzulegen",25,95,8)
  print("packe die spickzetteln",30,110,8)
  print("in die schultaschen",30,120,8)
+ if x>110 and y<20 then ss_finish(1) end
  if t > 10 then
  	spr(33,43,55)
  end
@@ -175,11 +176,43 @@ zeit = {
 
 -->8
 -- multi-cart helper
+ss_done=false
+function ss_finish(r)
+ if ss_done then return end
+ ss_done=true
+ cartdata("surviving_sandwehen")
+ dset(3,r)
+ load("surviving_sandwehen.p8")
+end
+
 function ss_menu()
  if (btn(4) and btnp(5))
  or (btn(5) and btnp(4)) then
+  cartdata("surviving_sandwehen")
+  dset(3,0)
   load("surviving_sandwehen.p8")
  end
+ ss_check_finish()
+end
+
+function ss_check_finish()
+ if won==1 or win==1 or win==true then ss_finish(1) end
+ if gameover==true then
+  if time_left~=nil and time_left<=0 then ss_finish(1)
+  else ss_finish(2) end
+ end
+ if coll~=nil and coll>0 then ss_finish(2) end
+ if hit~=nil and hit==1 then ss_finish(2) end
+ if failure==true then ss_finish(2) end
+ if verloren==true then ss_finish(2) end
+ if gamestate~=nil and gamestate==1 then
+  if score~=nil and score>=10 then ss_finish(1)
+  else ss_finish(2) end
+ end
+ if tuer~=nil and zeit~=nil and zeit.zt<=0 then ss_finish(1) end
+ if punkte~=nil and punkte>=5 then ss_finish(1) end
+ if justgo~=nil and t~=nil and t==0 then ss_finish(2) end
+ if t~=nil and won~=nil and t==0 and won==0 then ss_finish(2) end
 end
 
 __gfx__
