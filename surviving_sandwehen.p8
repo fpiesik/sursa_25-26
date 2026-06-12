@@ -7,41 +7,38 @@ __lua__
 -- story_order is intentionally separate:
 -- reorder this list later without touching
 -- the single level menu below.
-story_order={1,2,3,4,5,6,7,8,9,10,11,12}
+story_order={}
 
 levels={
  {"alina",   "mensa escape"},
  {"alissa",  "schulweg"},
  {"damon",   "wort-sortierer"},
  {"elanur",  "hindernislauf"},
+ {"elias",   "klassenzimmer"},
  {"emirhan", "faecher-sortierer"},
+ {"illia",   "buecher-labyrinth"},
+ {"issa",    "ball-chaos"},
  {"ivan",    "sandwehen"},
+ {"jan",     "sammelspiel"},
+ {"joud",    "pong-training"},
  {"lian",    "level"},
+ {"mikolaj", "suchspiel"},
+ {"musa",    "mach das"},
+ {"nayla",   "level"},
  {"raphael", "level"},
+ {"sam",     "schneeball"},
  {"samuel",  "verstecken"},
  {"sean",    "schneeball"},
+ {"sophia",  "laufspiel"},
  {"toprak",  "basketball"},
  {"tyler",   "zu spaet"}
 }
 
-story_text={
- "erstmal mensa ueberleben:\nwer snacks ausweicht,\nbekommt energie fuer tag 1.",
- "der schulweg ruft.\nautos links, abschluss rechts!",
- "woerter sortieren: deutsch\nist wie sport, nur mit stiften.",
- "hindernislauf im schulflur.\nbitte nicht die deko umrennen.",
- "faecher sortieren:\nchaos rein, stundenplan raus.",
- "sandwehen vor der schule!\naugen zu und weiterlernen.",
- "ein mysterioeses level.\nniemand weiss, was passiert.",
- "noch ein level der legenden.\nmutig bleiben!",
- "verstecken in der schule.\npsst, die pause zaehlt.",
- "schneeball-alarm!\nauch kalte haende schaffen abi.",
- "basketball-pruefung:\nkorb treffen, zukunft treffen.",
- "zu spaet? nicht heute!\nder abschluss wartet."
-}
+for i=1,#levels do add(story_order,i) end
 
 -- cartdata works in pico-8 html exports.
 -- slots: 0 mode, 1 story pos,
--- 2 lives, 3 result from level
+-- 2 reserved, 3 result from level
 cartdata("surviving_sandwehen")
 
 state="title"
@@ -49,7 +46,7 @@ sel=1
 level_sel=1
 blink=0
 timer=0
-lives=3
+lives=1
 story_pos=1
 
 function _init()
@@ -76,17 +73,10 @@ function handle_story_result(result)
   if story_pos>#story_order then
    state="graduation"
   else
-   state="cutscene"
+   launch_story_level()
   end
  else
-  lives-=1
-  dset(2,lives)
-  if lives<=0 then
-   state="gameover"
-  else
-   state="retry"
-   timer=120
-  end
+  state="gameover"
  end
 end
 
@@ -94,9 +84,9 @@ function _update60()
  blink=(blink+1)%60
  if state=="title" then update_title()
  elseif state=="single" then update_single()
- elseif state=="cutscene" then update_cutscene()
- elseif state=="retry" then update_retry()
- elseif state=="graduation" or state=="gameover" then update_end_scene()
+ elseif state=="intro" then update_intro()
+ elseif state=="graduation" then update_end_scene()
+ elseif state=="gameover" then update_gameover()
  end
 end
 
@@ -110,13 +100,13 @@ function update_title()
 end
 
 function start_story()
- lives=3
+ lives=1
  story_pos=1
  dset(0,1)
  dset(1,story_pos)
  dset(2,lives)
  dset(3,0)
- state="cutscene"
+ state="intro"
 end
 
 function update_single()
@@ -134,7 +124,7 @@ function update_single()
  end
 end
 
-function update_cutscene()
+function update_intro()
  if btnp(5) then state="title" sfx(0) end
  if btnp(4) then
   dset(0,1)
@@ -142,19 +132,28 @@ function update_cutscene()
   dset(2,lives)
   dset(3,0)
   sfx(1)
-  load_level(story_order[story_pos])
+  launch_story_level()
  end
 end
 
-function update_retry()
- timer-=1
- if timer<=0 then
-  dset(0,1)
-  dset(1,story_pos)
-  dset(2,lives)
+function update_gameover()
+ if btnp(4) then
+  launch_story_level()
+ elseif btnp(5) then
+  dset(0,0)
   dset(3,0)
-  load_level(story_order[story_pos])
+  state="title"
+  sfx(0)
  end
+end
+
+function launch_story_level()
+ dset(0,1)
+ dset(1,story_pos)
+ dset(2,lives)
+ dset(3,0)
+ sfx(1)
+ load_level(story_order[story_pos])
 end
 
 function update_end_scene()
@@ -175,8 +174,7 @@ end
 function _draw()
  if state=="title" then draw_title()
  elseif state=="single" then draw_single()
- elseif state=="cutscene" then draw_cutscene()
- elseif state=="retry" then draw_retry()
+ elseif state=="intro" then draw_intro()
  elseif state=="graduation" then draw_graduation()
  elseif state=="gameover" then draw_gameover()
  end
@@ -225,16 +223,17 @@ function draw_single()
  end
 end
 
-function draw_cutscene()
+function draw_intro()
  local li=story_order[story_pos]
  cls(12)
  draw_story_picture(li)
  rectfill(4,76,123,122,0)
  rect(4,76,123,122,7)
- print("kapitel "..story_pos.."/"..#story_order,8,80,10)
- print(levels[li][2],8,88,7)
- print(story_text[story_pos],8,98,6)
- print("leben: "..lives,84,80,8)
+ print("intro",8,80,10)
+ print("surviving sandwehen",8,88,7)
+ print("bestehe alle spiele und",8,98,6)
+ print("hol dir deinen abschluss!",8,106,6)
+ print("spiele: "..#story_order,80,80,8)
  print("🅾️ los  ❎ titel",30,121,5)
 end
 
@@ -246,15 +245,6 @@ function draw_story_picture(i)
  circfill(34+i%6*10,34,12,10)
  rectfill(20,54,108,68,4)
  print("bild platzhalter",34,30,7)
-end
-
-function draw_retry()
- cls(8)
- rectfill(8,38,119,88,0)
- rect(8,38,119,88,7)
- print("aua, das war knapp!",24,46,7)
- print("leben uebrig: "..lives,34,58,10)
- print("gleich nochmal...",31,72,6)
 end
 
 function draw_graduation()
@@ -279,6 +269,7 @@ function draw_gameover()
  print("leider nicht geschafft",22,42,8)
  print("die sandwehen waren",24,56,7)
  print("diesmal staerker.",31,64,7)
- print("neuer versuch ab tag 1!",12,80,10)
- print("🅾️/❎ titel",42,111,5)
+ print("einladung zur",34,78,10)
+ print("nachpruefung!",34,86,10)
+ print("🅾️ nochmal ❎ titel",24,111,5)
 end

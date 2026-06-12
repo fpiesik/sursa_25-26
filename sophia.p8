@@ -14,6 +14,7 @@ mapr = 0 --map
 end
 
 function _draw()
+ ss_menu()
 
 
 cls()
@@ -115,6 +116,38 @@ zeit = {
 --player design by: pico-8
 --dekoration by: sophia & delal
 --kode by: sophia
+-->8
+-- multi-cart helper
+ss_done=false
+function ss_finish(r)
+ if ss_done then return end
+ ss_done=true
+ cartdata("surviving_sandwehen")
+ dset(3,r)
+ load("surviving_sandwehen.p8")
+end
+
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  cartdata("surviving_sandwehen")
+  dset(3,0)
+  load("surviving_sandwehen.p8")
+ end
+ ss_check_finish()
+end
+
+function ss_check_finish()
+ if won==1 or won==true or win==1 or win==true then ss_finish(1) end
+ if books~=nil and maxbooks~=nil and books>=maxbooks then ss_finish(1) end
+ if gmo==2 then ss_finish(1) end
+ if gmo==1 then ss_finish(2) end
+ if t~=nil and t<0 then ss_finish(2) end
+ if px~=nil and px2~=nil and px>122 then ss_finish(1) end
+ if px~=nil and px2~=nil and px2>px then ss_finish(2) end
+ if pdl1y~=nil and pdl2y~=nil and time()>10 then ss_finish(1) end
+end
+
 __gfx__
 000000000ae9aa900aa000000000000000e9aa9000e9aa900aa00000000000000e9aa900ae9aa90000e9aa900044444444400000000000000000000000000000
 00000000a9eaaaa9a9e9aa9a0ae9aa900aeaaaa90aeaaaa9a9e9aa9a0ae9aa90aeaaaa909eaaaa900aeaaaa90044444444440000000000000000000000000000

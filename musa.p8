@@ -35,6 +35,7 @@ function _update()
 end
 
 function _draw()
+ ss_menu()
 	cls()
 	map()
 	spr(5,px,py)
@@ -91,6 +92,38 @@ zeit = {
 		spr(s.sprts[s.frm],s.x+s.br-4,s.y)
 	end
 }
+
+-->8
+-- multi-cart helper
+ss_done=false
+function ss_finish(r)
+ if ss_done then return end
+ ss_done=true
+ cartdata("surviving_sandwehen")
+ dset(3,r)
+ load("surviving_sandwehen.p8")
+end
+
+function ss_menu()
+ if (btn(4) and btnp(5))
+ or (btn(5) and btnp(4)) then
+  cartdata("surviving_sandwehen")
+  dset(3,0)
+  load("surviving_sandwehen.p8")
+ end
+ ss_check_finish()
+end
+
+function ss_check_finish()
+ if won==1 or won==true or win==1 or win==true then ss_finish(1) end
+ if books~=nil and maxbooks~=nil and books>=maxbooks then ss_finish(1) end
+ if gmo==2 then ss_finish(1) end
+ if gmo==1 then ss_finish(2) end
+ if t~=nil and t<0 then ss_finish(2) end
+ if px~=nil and px2~=nil and px>122 then ss_finish(1) end
+ if px~=nil and px2~=nil and px2>px then ss_finish(2) end
+ if pdl1y~=nil and pdl2y~=nil and time()>10 then ss_finish(1) end
+end
 
 __gfx__
 00000000885885888858858888588588000000000f000f000f000f00000000000000000000000000000000000000000000000009000000000009000000055000
