@@ -228,24 +228,24 @@ end
 function draw_intro()
  local li=story_order[story_pos]
  local level=levels[li]
- cls(12)
+ cls(0)
  draw_story_picture(li)
- rectfill(4,70,123,116,0)
- rect(4,70,123,116,7)
- print("spiel "..story_pos.."/"..#story_order,8,76,10)
- print(level[2],8,88,7)
- print("von "..level[3],8,98,6)
+ --rectfill(4,70,123,116,0)
+ --rect(4,70,123,116,7)
+ print("spiel "..story_pos.."/"..#story_order,50,20,10)
+ print(level[2],50,50,7)
+ print("von "..level[3],50,98,6)
  print("c:start  x:zurueck",30,121,5)
 end
 
 function draw_story_picture(i)
  -- placeholder: later replace with
  -- spr()/map() calls per level.
- rectfill(14,10,113,68,9)
- rect(14,10,113,68,7)
- circfill(34+i%6*10,34,12,10)
- rectfill(20,54,108,68,4)
- print("bild platzhalter",34,30,7)
+ --rectfill(14,10,113,68,9)
+ --rect(14,10,113,68,7)
+ --circfill(34+i%6*10,34,12,10)
+ --rectfill(20,54,108,68,4)
+ --print("bild platzhalter",34,30,7)
 end
 
 function draw_graduation()
