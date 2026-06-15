@@ -11,7 +11,7 @@ story_order={}
 
 levels={
  --{"sam_h",   "mensa escape"},
- {"alissa",  "schulweg"},
+ {"games/alissa",  "schulweg"},
  {"damon",   "wort-sortierer"},
  {"elanur",  "hindernislauf"},
  {"elias",   "klassenzimmer"},
