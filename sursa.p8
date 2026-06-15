@@ -74,7 +74,7 @@ function handle_story_result(result)
   if story_pos>#story_order then
    state="graduation"
   else
-   launch_story_level()
+   state="intro"
   end
  else
   state="gameover"
@@ -139,7 +139,7 @@ end
 
 function update_gameover()
  if btnp(4) then
-  launch_story_level()
+  state="intro"
  elseif btnp(5) then
   dset(0,0)
   dset(3,0)
@@ -227,15 +227,14 @@ end
 
 function draw_intro()
  local li=story_order[story_pos]
+ local level=levels[li]
  cls(12)
  draw_story_picture(li)
  rectfill(4,70,123,116,0)
  rect(4,70,123,116,7)
- print("intro",8,80,10)
- print("surviving sandwehen",8,88,7)
- print("bestehe alle spiele und",8,98,6)
- print("hol dir deinen abschluss!",8,106,6)
- print("spiele: "..#story_order,80,80,8)
+ print("spiel "..story_pos.."/"..#story_order,8,76,10)
+ print(level[2],8,88,7)
+ print("von "..level[3],8,98,6)
  print("c:start  x:zurueck",30,121,5)
 end
 
