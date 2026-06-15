@@ -10,28 +10,28 @@ __lua__
 story_order={}
 
 levels={
- --{"sam_h",   "mensa escape"},
- {"games/alissa",  "schulweg"},
- {"damon",   "wort-sortierer"},
- {"elanur",  "hindernislauf"},
- {"elias",   "klassenzimmer"},
- --{"emirhan", "faecher-sortierer"},
- {"illia",   "buecher-labyrinth"},
- {"issa",    "ball-chaos"},
- --{"ivan",    "sandwehen"},
- {"jan",     "sammelspiel"},
- {"joud",    "pong-training"},
- --{"lian",    "level"},
- {"mikolaj", "suchspiel"},
- --{"musa",    "mach das"},
- --{"nayla",   "level"},
- {"raphael", "level"},
- {"sam_g",     "schneeball"},
- {"samuel",  "verstecken"},
- {"sean",    "schneeball"},
- {"sophia",  "laufspiel"},
- {"toprak",  "basketball"},
- {"tyler",   "zu spaet"}
+ {"games/alissa",  "schulweg",             "alissa"},
+ {"games/damon",   "wort-sortierer",       "damon"},
+ {"games/elanur",  "hindernislauf",        "elanur"},
+ {"games/elias",   "klassenzimmer",        "elias"},
+ {"games/emirhan", "faecher-sortierer",    "emirhan"},
+ {"games/illia",   "buecher-labyrinth",    "illia"},
+ {"games/issa",    "ball-chaos",           "issa"},
+ {"games/ivan",    "sandwehen",            "ivan"},
+ {"games/jan",     "sammelspiel",          "jan"},
+ {"games/joud",    "pong-training",        "joud"},
+ {"games/lian",    "level",                "lian"},
+ {"games/mikolaj", "suchspiel",            "mikolaj"},
+ {"games/musa",    "mach das",             "musa"},
+ {"games/nayla",   "level",                "nayla"},
+ {"games/raphael", "level",                "raphael"},
+ {"games/sam",     "schneeball",           "sam"},
+ {"games/sam_h",   "mensa escape",         "sam h"},
+ {"games/samuel",  "verstecken",           "samuel"},
+ {"games/sean",    "schneeball",           "sean"},
+ {"games/sophia",  "laufspiel",            "sophia"},
+ {"games/toprak",  "basketball",           "toprak"},
+ {"games/tyler",   "zu spaet",             "tyler"}
 }
 
 for i=1,#levels do add(story_order,i) end
@@ -221,6 +221,7 @@ function draw_single()
    if blink<30 then print("▶",11,y,c) end
   end
   print(levels[i][1]..": "..levels[i][2],20,y,c)
+  print("von "..levels[i][3],76,y+5,c)
  end
 end
 

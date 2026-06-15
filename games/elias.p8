@@ -113,7 +113,7 @@ function ss_finish(r)
  ss_done=true
  cartdata("surviving_sandwehen")
  dset(3,r)
- load("surviving_sandwehen.p8")
+ load("sursa.p8")
 end
 
 function ss_menu()
@@ -121,7 +121,7 @@ function ss_menu()
  or (btn(5) and btnp(4)) then
   cartdata("surviving_sandwehen")
   dset(3,0)
-  load("surviving_sandwehen.p8")
+  load("sursa.p8")
  end
  ss_check_finish()
 end
