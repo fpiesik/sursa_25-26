@@ -96,7 +96,7 @@ function update_title()
  if btnp(4) or btnp(5) then
   if sel==1 then start_story()
   else state="single" end
-  sfx(1)
+  sfx(0)
  end
 end
 
@@ -186,7 +186,7 @@ function draw_title()
  map(0,0)
  --for i=0,15 do line(0,i*8,127,i*8,5) end
  --circfill(104,24,16,10)
- --rectfill(0,88,127,127,4)
+ --rectfill(0,88,127,127,4
  --print("surviving",45,20,7)
  --print("sandwehen",43,29,10)
  --print("abschluss-edition",31,39,6)
