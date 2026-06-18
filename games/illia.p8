@@ -23,9 +23,7 @@ function _draw()
  cls(7)
  map(0,0,0,0,16,16)
  spr(1,x,y)
-	if pget(x,y) == wc or pget(x+7,y) == wc or pget(x,y+7) == wc then
-		coll = true
-	end
+	coll = is_wall(x,y)
  print("books:"..books,1,1,7)
 	print("sammle alle bucher,⬇️⬅️⬆️➡️",10,121,7)
 
@@ -45,6 +43,22 @@ function color_collision(x,y,c)
 	return pget(x,y) == c
 end
 
+function is_wall(nx,ny)
+	return color_collision(nx,ny,wc)
+	or color_collision(nx+7,ny,wc)
+	or color_collision(nx,ny+7,wc)
+	or color_collision(nx+7,ny+7,wc)
+end
+
+function move_player(dx,dy)
+	local nx=x+dx
+	local ny=y+dy
+	if not is_wall(nx,ny) then
+		x=nx
+		y=ny
+	end
+end
+
 function _update()
 	zeit:upd()
  time_frames -= 1
@@ -53,14 +67,10 @@ function _update()
   gmo = 1
  end
 
-	if coll == false then
-	 if btn(0) then x-=spd end
-	 if btn(1) then x+=spd end
-	 if btn(2) then y-=spd end
-	 if btn(3) then y+=spd end
-	else 
-		gmo = 1
-	end
+	if btn(0) then move_player(-spd,0) end
+	if btn(1) then move_player(spd,0) end
+	if btn(2) then move_player(0,-spd) end
+	if btn(3) then move_player(0,spd) end
  tx=flr((x+4)/8)
  ty=flr((y+4)/8)
 
