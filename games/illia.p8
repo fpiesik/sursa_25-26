@@ -104,7 +104,7 @@ end
 zeit = {
 	farbe1 = 10,
 	farbe2 = 8,
-	ztst = 30, --startzeit
+	ztst = 20, --startzeit
 	zt = 0,
 	ztstb = 100, --zeit startbreite 
 	zta = 0, --zeitanteil

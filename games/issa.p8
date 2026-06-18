@@ -53,7 +53,7 @@ function _update()
  upd_ball()
 
  -- game over
- if bx > 90 or by > 90 then
+ if bx > 100 or by > 100 then
   gmo = 1
  end
 
