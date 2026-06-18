@@ -52,8 +52,10 @@ function _update()
 
  upd_ball()
 
- -- game over
- if bx > 100 or by > 100 then
+ -- game over: ball ist zu weit vom mittelpunkt entfernt
+ local dx = bx - 64
+ local dy = by - 64
+ if sqrt(dx*dx + dy*dy) > 50 then
   gmo = 1
  end
 
