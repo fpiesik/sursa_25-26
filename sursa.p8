@@ -9,6 +9,16 @@ __lua__
 -- the single level menu below.
 story_order={}
 
+-- single menu text colors
+-- change these values to adjust the
+-- contrast between description and author.
+single_desc_color=7
+single_author_color=10
+single_sel_desc_color=7
+single_sel_author_color=11
+single_by_color=6
+single_sel_by_color=7
+
 levels={
  {"games/alissa",  "schulweg",             "alissa"},
  {"games/damon",   "wort-sortierer",       "damon"},
@@ -224,8 +234,25 @@ function draw_single()
    c=7
    if blink<30 then print("▶",11,y,c) end
   end
-  print(levels[i][2].." von "..levels[i][3],20,y,c)
+  draw_single_entry(i,20,y)
  end
+end
+
+function draw_single_entry(i,x,y)
+ local desc=levels[i][2]
+ local author=levels[i][3]
+ local desc_color=single_desc_color
+ local by_color=single_by_color
+ local author_color=single_author_color
+ if i==level_sel then
+  desc_color=single_sel_desc_color
+  by_color=single_sel_by_color
+  author_color=single_sel_author_color
+ end
+ print(desc,x,y,desc_color)
+ local by_x=x+#desc*4
+ print(" von ",by_x,y,by_color)
+ print(author,by_x+20,y,author_color)
 end
 
 function draw_intro()
