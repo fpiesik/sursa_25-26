@@ -71,7 +71,7 @@ function _draw()
 		sfx(2)
 	end
 	
-	print("coll?"..coll,0+x,20,8)
+	--print("coll?"..coll,0+x,20,8)
 	
 	if 290>x then 
 		x=x+1
@@ -79,7 +79,7 @@ function _draw()
 		won = 1
 	end
 	
-	print(x,x,10)
+	--print(x,x,10)
 	if btn(3) then --button (knopf)
   y=y+1
 	end
