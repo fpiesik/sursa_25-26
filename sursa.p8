@@ -195,6 +195,10 @@ function draw_title()
  print("⬆️⬇️:waehlen c:weiter",20,120,6)
 end
 
+function center_print(t,y,c)
+ print(t,64-#t*2,y,c)
+end
+
 function draw_option(n,t,x,y)
  local c=6
  if sel==n then
@@ -232,10 +236,10 @@ function draw_intro()
  draw_story_picture(li)
  --rectfill(4,70,123,116,0)
  --rect(4,70,123,116,7)
- print("spiel "..story_pos.."/"..#story_order,50,20,10)
- print(level[2],50,50,7)
- print("von "..level[3],50,98,6)
- print("c:start  x:zurueck",30,121,5)
+ center_print("spiel "..story_pos.."/"..#story_order,20,10)
+ center_print(level[2],50,7)
+ center_print("von "..level[3],58,6)
+ center_print("c:start  x:zurueck",121,5)
 end
 
 function draw_story_picture(i)
