@@ -237,7 +237,7 @@ function ss_check_finish()
  if books~=nil and maxbooks~=nil and books>=maxbooks then ss_finish(1) end
  if gmo==2 then ss_finish(1) end
  if gmo==1 then ss_finish(2) end
- if t~=nil and t<0 then ss_finish(2) end
+ if t==0 and t<0 then ss_finish(2) end
  if px~=nil and px2~=nil and px>122 then ss_finish(1) end
  if px~=nil and px2~=nil and px2>px then ss_finish(2) end
  if pdl1y~=nil and pdl2y~=nil and time()>10 then ss_finish(1) end

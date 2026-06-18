@@ -151,7 +151,7 @@ function upd_ply()
  --controls
  if (btn(0)) then player.dx-=player.acc end -- left
  if (btn(1)) then player.dx+=player.acc end -- right
- if (btnp(5)) then player.dy-=player.boost end -- x
+ if (btnp(4)) then player.dy-=player.boost end -- x
 
  --limit left/right speed
  player.dx=mid(-player.max_dx,player.dx,player.max_dx)

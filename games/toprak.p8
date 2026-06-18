@@ -13,7 +13,7 @@ bx = 90
 by = 40
 xbb=0
 ybb=0
-timer = 60
+timer = 20
 timespeed = 0.02
 function _draw()
  ss_menu()
