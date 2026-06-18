@@ -232,9 +232,9 @@ function draw_single()
   if i==level_sel then
    rectfill(8,y-2,119,y+6,13)
    c=7
-   if blink<30 then print("▶",11,y,c) end
+   if blink<30 then print("▶",5,y,c) end
   end
-  draw_single_entry(i,20,y)
+  draw_single_entry(i,10,y)
  end
 end
 
