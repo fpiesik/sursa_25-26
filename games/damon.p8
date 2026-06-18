@@ -6,6 +6,8 @@ y = 60
 s = 1
 f = 1
 t = 15 	
+wc = 8 --wortfarbe
+ic = 9 --instruktion-farbe
 justgo = 1	
 numr = 0 --number right
 won = 0
@@ -54,11 +56,11 @@ function _draw()
 	print("verben",95,10)
 	spr(f,x,y)
 	print(flr(t),55,1)
-	print("apfel",w1.x,w1.y)
-	print("rot",w2.x,w2.y)
-	print("fahren",w3.x,w3.y) 
-	print("sortiere die woerter",20,35)
-	print("ablegem mit ❎",37,83)         
+	print("apfel",w1.x,w1.y,wc)
+	print("rot",w2.x,w2.y,wc)
+	print("fahren",w3.x,w3.y,wc) 
+	print("sortiere die woerter",20,35,ic)
+	print("ablegem mit x",37,83,ic)         
 	zeit:upd()
  zeit:drw()
  
@@ -165,7 +167,7 @@ end
 zeit = {
 	farbe1 = 5,
 	farbe2 = 8,
-	ztst = 12, --startzeit
+	ztst = 20, --startzeit
 	zt = 0,
 	ztstb = 100, --zeit startbreite 
 	zta = 0, --zeitanteil
