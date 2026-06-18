@@ -224,8 +224,7 @@ function draw_single()
    c=7
    if blink<30 then print("▶",11,y,c) end
   end
-  print(levels[i][1]..": "..levels[i][2],20,y,c)
-  print("von "..levels[i][3],76,y+5,c)
+  print(levels[i][2].." von "..levels[i][3],20,y,c)
  end
 end
 
