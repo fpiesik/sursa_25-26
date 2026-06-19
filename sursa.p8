@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
+
 -- surviving sandwehen
 -- story + single meta cart
 
@@ -29,7 +30,7 @@ levels={
  {"games/issa",    "ball-chaos",           "issa"},
  --{"games/ivan",    "sandwehen",            "ivan"},
  {"games/jan",     "sammelspiel",          "jan"},
- {"games/joud",    "pong-training",        "joud"},
+ {"games/joud",    "air hockey",        "joud"},
  --{"games/lian",    "level",                "lian"},
  {"games/mikolaj", "suchspiel",            "mikolaj"},
  --{"games/musa",    "mach das",             "musa"},
