@@ -11,88 +11,163 @@ z7={5, 21 ,37}
 z8={6, 22 ,38}
 
 pdl1x = 10 --schlaeger1 x
-pdl1y	= 80 --schlaeger2 y
+pdl1y	= 56 --schlaeger1 y
 
-pdl2x = 110 --schlaeger1 x
-pdl2y	= 80 --schlaeger2 y
+pdl2x = 110 --schlaeger2 x
+pdl2y	= 56 --schlaeger2 y
 
-
+puckx=64
+pucky=64
+puckdx=1.6
+puckdy=.8
+puckr=3
+score1=0
+score2=0
+maxscore=5
+won=false
 
 frm = 1 --frame
-function _draw()
- ss_menu()
-	cls(5)
-	map()
-	spr(52,85,2,2)
-	
-	--frame count
-	frm = frm + 0.04
-	if frm > #z1 then
-		frm = 1
-	end
-	local rfr = flr(frm) -- round frame
-	---------------
-	--pedal
-	if btn(3,1) then
-		pdl1y = pdl1y + 1
-	end
-	
-	if btn(2,1) then
-		pdl1y = pdl1y - 1
-	end
-	spr(81,pdl1x,pdl1y,1,2)
-	
-	
-	if btn(3,0) then
-		pdl2y = pdl2y + 1
-	end
-	
-	if btn(2,0) then
-		pdl2y = pdl2y - 1
-	end
-	spr(81,pdl2x,pdl2y,1,2)
 
+function reset_puck(dir)
+ puckx=64
+ pucky=64
+ puckdx=1.4*dir
+ puckdy=rnd(1.6)-.8
+ if abs(puckdy)<.3 then
+  puckdy=.7
+ end
+end
 
-	
-	spr(z1[rfr],20,20)
-	spr(z1[rfr],20,30)
-	spr(z1[rfr],20,40)
-	
-	spr(z2[rfr],30,20)
-	spr(z2[rfr],30,30)
-	spr(z2[rfr],30,40)
-	
-	spr(z3[rfr],10,20)
-	spr(z3[rfr],10,30)
-	spr(z3[rfr],10,40)
-	
-	spr(z4[rfr],40,20)
-	spr(z4[rfr],40,30)
-	spr(z4[rfr],40,40)
-	
-	
-	spr(z5[rfr],110,30)
-	spr(z5[rfr],110,40)
-	
-	spr(z6[rfr],100,20)
-	spr(z6[rfr],100,30)
-	spr(z6[rfr],100,40)
-	
-	spr(z7[rfr],90,20)
-	spr(z7[rfr],90,30)
-	spr(z7[rfr],90,40)
-	
-	spr(z8[rfr],80,20)
-	spr(z8[rfr],80,30)
-	spr(z8[rfr],80,40)
-
-	
-	
-	print(pdl1y)
+function hit_paddle(px,py)
+ return puckx+puckr>=px and puckx-puckr<=px+8
+  and pucky+puckr>=py and pucky-puckr<=py+16
 end
 
 function _update()
+ ss_menu()
+ if won then return end
 
+ --pedal
+ if btn(3,1) then
+  pdl1y = pdl1y + 2
+ end
+ if btn(2,1) then
+  pdl1y = pdl1y - 2
+ end
+
+ if btn(3,0) then
+  pdl2y = pdl2y + 2
+ end
+ if btn(2,0) then
+  pdl2y = pdl2y - 2
+ end
+
+ pdl1y=mid(8,pdl1y,104)
+ pdl2y=mid(8,pdl2y,104)
+
+ puckx+=puckdx
+ pucky+=puckdy
+
+ if pucky-puckr<8 then
+  pucky=8+puckr
+  puckdy=-puckdy
+ end
+ if pucky+puckr>120 then
+  pucky=120-puckr
+  puckdy=-puckdy
+ end
+
+ if puckdx<0 and hit_paddle(pdl1x,pdl1y) then
+  puckx=pdl1x+8+puckr
+  puckdx=abs(puckdx)+.15
+  puckdy+=(pucky-(pdl1y+8))*.08
+ end
+ if puckdx>0 and hit_paddle(pdl2x,pdl2y) then
+  puckx=pdl2x-puckr
+  puckdx=-abs(puckdx)-.15
+  puckdy+=(pucky-(pdl2y+8))*.08
+ end
+
+ puckdy=mid(-2.4,puckdy,2.4)
+ puckdx=mid(-3,puckdx,3)
+
+ if puckx<-puckr then
+  score2+=1
+  reset_puck(-1)
+ end
+ if puckx>127+puckr then
+  score1+=1
+  reset_puck(1)
+ end
+
+ if score1>=maxscore then
+  won=true
+ end
+ if score2>=maxscore then
+  gmo=1
+ end
+end
+
+function _draw()
+ cls(5)
+ map()
+
+ --frame count
+ frm = frm + 0.04
+ if frm > #z1 then
+  frm = 1
+ end
+ local rfr = flr(frm) -- round frame
+
+ --spielfeld und punkte
+ line(64,8,64,120,7)
+ rect(0,8,127,120,7)
+ print(score1,46,2,7)
+ print(score2,78,2,7)
+ print("erst 5 tore",43,122,7)
+
+ --schlaeger und puck
+ spr(81,pdl1x,pdl1y,1,2)
+ spr(81,pdl2x,pdl2y,1,2)
+ circfill(puckx,pucky,puckr,7)
+ circ(puckx,pucky,puckr,0)
+
+ spr(z1[rfr],20,20)
+ spr(z1[rfr],20,30)
+ spr(z1[rfr],20,40)
+
+ spr(z2[rfr],30,20)
+ spr(z2[rfr],30,30)
+ spr(z2[rfr],30,40)
+
+ spr(z3[rfr],10,20)
+ spr(z3[rfr],10,30)
+ spr(z3[rfr],10,40)
+
+ spr(z4[rfr],40,20)
+ spr(z4[rfr],40,30)
+ spr(z4[rfr],40,40)
+
+ spr(z5[rfr],110,30)
+ spr(z5[rfr],110,40)
+
+ spr(z6[rfr],100,20)
+ spr(z6[rfr],100,30)
+ spr(z6[rfr],100,40)
+
+ spr(z7[rfr],90,20)
+ spr(z7[rfr],90,30)
+ spr(z7[rfr],90,40)
+
+ spr(z8[rfr],80,20)
+ spr(z8[rfr],80,30)
+ spr(z8[rfr],80,40)
+
+ if won then
+  print("spieler 1 gewinnt!",30,58,11)
+ elseif gmo==1 then
+  print("spieler 2 gewinnt!",30,58,8)
+ end
 end
 
 -->8
@@ -124,7 +199,6 @@ function ss_check_finish()
  if t==0 and t<0 then ss_finish(2) end
  if px~=nil and px2~=nil and px>122 then ss_finish(1) end
  if px~=nil and px2~=nil and px2>px then ss_finish(2) end
- if pdl1y~=nil and pdl2y~=nil and time()>10 then ss_finish(1) end
 end
 
 __gfx__
