@@ -10,14 +10,26 @@ z6={4, 20 ,36}
 z7={5, 21 ,37}
 z8={6, 22 ,38}
 
-pdl1x = 10 --schlaeger1 x
-pdl1y	= 56 --schlaeger1 y
+--spielfeld-konfiguration
+field_l=0
+field_r=127
+field_t=8
+field_b=120
+field_cx=(field_l+field_r+1)/2
+field_cy=(field_t+field_b)/2
 
-pdl2x = 110 --schlaeger2 x
-pdl2y	= 56 --schlaeger2 y
+pdl_w=8
+pdl_h=16
+pdl_margin=10
 
-puckx=64
-pucky=64
+pdl1x=field_l+pdl_margin --schlaeger1 x
+pdl1y=field_cy-pdl_h/2 --schlaeger1 y
+
+pdl2x=field_r-pdl_margin-pdl_w --schlaeger2 x
+pdl2y=field_cy-pdl_h/2 --schlaeger2 y
+
+puckx=field_cx
+pucky=field_cy
 puckdx=1.6
 puckdy=.8
 puckr=3
@@ -29,8 +41,8 @@ won=false
 frm = 1 --frame
 
 function reset_puck(dir)
- puckx=64
- pucky=64
+ puckx=field_cx
+ pucky=field_cy
  puckdx=1.4*dir
  puckdy=rnd(1.6)-.8
  if abs(puckdy)<.3 then
@@ -39,8 +51,8 @@ function reset_puck(dir)
 end
 
 function hit_paddle(px,py)
- return puckx+puckr>=px and puckx-puckr<=px+8
-  and pucky+puckr>=py and pucky-puckr<=py+16
+ return puckx+puckr>=px and puckx-puckr<=px+pdl_w
+  and pucky+puckr>=py and pucky-puckr<=py+pdl_h
 end
 
 function _update()
@@ -62,40 +74,40 @@ function _update()
   pdl2y = pdl2y - 2
  end
 
- pdl1y=mid(8,pdl1y,104)
- pdl2y=mid(8,pdl2y,104)
+ pdl1y=mid(field_t,pdl1y,field_b-pdl_h)
+ pdl2y=mid(field_t,pdl2y,field_b-pdl_h)
 
  puckx+=puckdx
  pucky+=puckdy
 
- if pucky-puckr<8 then
-  pucky=8+puckr
+ if pucky-puckr<field_t then
+  pucky=field_t+puckr
   puckdy=-puckdy
  end
- if pucky+puckr>120 then
-  pucky=120-puckr
+ if pucky+puckr>field_b then
+  pucky=field_b-puckr
   puckdy=-puckdy
  end
 
  if puckdx<0 and hit_paddle(pdl1x,pdl1y) then
-  puckx=pdl1x+8+puckr
+  puckx=pdl1x+pdl_w+puckr
   puckdx=abs(puckdx)+.15
-  puckdy+=(pucky-(pdl1y+8))*.08
+  puckdy+=(pucky-(pdl1y+pdl_h/2))*.08
  end
  if puckdx>0 and hit_paddle(pdl2x,pdl2y) then
   puckx=pdl2x-puckr
   puckdx=-abs(puckdx)-.15
-  puckdy+=(pucky-(pdl2y+8))*.08
+  puckdy+=(pucky-(pdl2y+pdl_h/2))*.08
  end
 
  puckdy=mid(-2.4,puckdy,2.4)
  puckdx=mid(-3,puckdx,3)
 
- if puckx<-puckr then
+ if puckx<field_l-puckr then
   score2+=1
   reset_puck(-1)
  end
- if puckx>127+puckr then
+ if puckx>field_r+puckr then
   score1+=1
   reset_puck(1)
  end
@@ -120,11 +132,11 @@ function _draw()
  local rfr = flr(frm) -- round frame
 
  --spielfeld und punkte
- line(64,8,64,120,7)
- rect(0,8,127,120,7)
- print(score1,46,2,7)
- print(score2,78,2,7)
- print("erst 5 tore",43,122,7)
+ line(field_cx,field_t,field_cx,field_b,7)
+ rect(field_l,field_t,field_r,field_b,7)
+ print(score1,field_cx-18,field_t-6,7)
+ print(score2,field_cx+14,field_t-6,7)
+ print("erst 5 tore",field_cx-21,field_b+2,7)
 
  --schlaeger und puck
  spr(81,pdl1x,pdl1y,1,2)
