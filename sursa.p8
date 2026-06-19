@@ -49,7 +49,8 @@ for i=1,#levels do add(story_order,i) end
 
 -- cartdata works in pico-8 html exports.
 -- slots: 0 mode, 1 story pos,
--- 2 reserved, 3 result from level
+-- 2 lives, 3 result from level,
+-- 10+ saved shuffled story order
 cartdata("surviving_sandwehen")
 
 state="title"
@@ -67,6 +68,7 @@ function _init()
  if result>0 then
   dset(3,0)
   if mode==1 then
+   load_story_order()
    story_pos=max(1,dget(1))
    lives=max(0,dget(2))
    handle_story_result(result)
@@ -76,6 +78,36 @@ function _init()
  else
   state="title"
  end
+end
+
+function reset_story_order()
+ story_order={}
+ for i=1,#levels do add(story_order,i) end
+end
+
+function shuffle_story_order()
+ reset_story_order()
+ for i=#story_order,2,-1 do
+  local j=flr(rnd(i))+1
+  story_order[i],story_order[j]=story_order[j],story_order[i]
+ end
+end
+
+function save_story_order()
+ for i=1,#story_order do
+  dset(9+i,story_order[i])
+ end
+end
+
+function load_story_order()
+ local ok=true
+ story_order={}
+ for i=1,#levels do
+  local li=dget(9+i)
+  if li<1 or li>#levels then ok=false end
+  add(story_order,li)
+ end
+ if not ok then reset_story_order() end
 end
 
 function handle_story_result(result)
@@ -114,6 +146,8 @@ end
 function start_story()
  lives=1
  story_pos=1
+ shuffle_story_order()
+ save_story_order()
  dset(0,1)
  dset(1,story_pos)
  dset(2,lives)
