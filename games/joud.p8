@@ -35,8 +35,8 @@ puckdy=.8
 puckr=3
 score1=0
 score2=0
-maxscore=5
 won=false
+gmo=0
 
 frm = 1 --frame
 
@@ -62,21 +62,29 @@ end
 function _update()
  ss_menu()
  zeit:upd()
- if won then return end
+ if won or gmo==1 then return end
 
- --pedal
- if btn(3,1) then
+ --spieler 1
+ if btn(3,0) then
   pdl1y = pdl1y + 2
  end
- if btn(2,1) then
+ if btn(2,0) then
   pdl1y = pdl1y - 2
  end
 
- if btn(3,0) then
-  pdl2y = pdl2y + 2
+ --spieler 2 (computer)
+ local p2_mid=pdl2y+pdl_h/2
+ local ziel=pucky
+ local fehler=6+zeit.zta*10
+ if puckdx>0 then
+  ziel+=sin(pucky*.05)*fehler
+ else
+  ziel=field_cy
  end
- if btn(2,0) then
-  pdl2y = pdl2y - 2
+ if p2_mid<ziel-2 then
+  pdl2y+=1.7
+ elseif p2_mid>ziel+2 then
+  pdl2y-=1.7
  end
 
  pdl1y=mid(field_t,pdl1y,field_b-pdl_h)
@@ -110,18 +118,16 @@ function _update()
 
  if puckx<field_l-puckr then
   score2+=1
-  reset_puck(-1)
+  gmo=1
+  return
  end
  if puckx>field_r+puckr then
   score1+=1
   reset_puck(1)
  end
 
- if score1>=maxscore then
+ if zeit.zta<=0 then
   won=true
- end
- if score2>=maxscore then
-  gmo=1
  end
 end
 
@@ -141,7 +147,7 @@ function _draw()
  rect(field_l,field_t,field_r,field_b,7)
  print(score1,field_cx-18,field_t-6,7)
  print(score2,field_cx+14,field_t-6,7)
- print("erst 5 tore",field_cx-21,field_b+2,7)
+ print("20 sek. ueberleben",field_cx-34,field_b+2,7)
 
  --schlaeger und puck
  spr(81,pdl1x,pdl1y,1,2)
@@ -182,9 +188,9 @@ function _draw()
  spr(z8[rfr],80,40)
 
  if won then
-  print("spieler 1 gewinnt!",30,58,11)
+  print("du gewinnst!",41,58,11)
  elseif gmo==1 then
-  print("spieler 2 gewinnt!",30,58,8)
+  print("tor kassiert!",40,58,8)
  end
  zeit:drw()
 end
