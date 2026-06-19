@@ -41,7 +41,7 @@ end
 
 function _update60()
  if verloren then
-  if btnp(5) then
+  if btnp(4) then
    schnee={}
    punkte=0
    verloren=false

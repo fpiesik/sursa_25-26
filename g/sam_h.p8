@@ -1,6 +1,7 @@
 pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
+
 -- mensa escape hardcore
 
 player={
@@ -20,7 +21,7 @@ ingo={
 foods={}
 score=0
 gameover=false
-time_left=30*30 -- 30 sekunden (30 fps)
+time_left=30*10 -- 30 sekunden (30 fps)
 
 function _init()
  for i=1,6 do

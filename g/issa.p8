@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 p1 = 0
-d = 30
+d = 40
 xoff = 60
 yoff = 48
 s = 0.01 --- speed
@@ -160,7 +160,7 @@ end
 zeit = {
 	farbe1 = 5,
 	farbe2 = 8,
-	ztst = 	10, --startzeit
+	ztst = 	7, --startzeit
 	zt = 0,
 	ztstb = 100, --zeit startbreite 
 	zta = 0, --zeitanteil
@@ -225,7 +225,7 @@ function ss_check_finish()
  if books~=nil and maxbooks~=nil and books>=maxbooks then ss_finish(1) end
  if gmo==2 then ss_finish(1) end
  if gmo==1 then ss_finish(2) end
- if t0==0 and t<0 then ss_finish(2) end
+ if zeit.zta<=0 then ss_finish(2) end
  if px~=nil and px2~=nil and px>122 then ss_finish(1) end
  if px~=nil and px2~=nil and px2>px then ss_finish(2) end
  if pdl1y~=nil and pdl2y~=nil and time()>10 then ss_finish(1) end

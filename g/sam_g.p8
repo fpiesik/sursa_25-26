@@ -54,7 +54,7 @@ zeit:upd()
 		map(10,10)
 		
 		spr(35,snowb.x,snowb.y,2,2)
-		snowb.y = snowb.y+8
+		snowb.y = snowb.y+5
 		
 		if snowb.y > 120 then
 			snowb.y = -20

@@ -8,7 +8,7 @@ function _init()
  frames={1,3,5,7}
  camera(8,32)
  e={sp=10,x=10,y=88,speed=1}
- ts_r = 300
+ ts_r = 150
  failure=false
  win=false
  sp = 29
