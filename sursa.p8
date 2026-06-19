@@ -22,27 +22,27 @@ single_sel_by_color=7
 
 levels={
  {"g/alissa","schulweg","alissa 7a"},
- --{"g/damon","wort-sortierer","damon 7a"},
- --{"g/elanur","hindernislauf","elanur 7e"},
+ {"g/damon","wort-sortierer","damon 7a"},
+ {"g/elanur","hindernislauf","elanur 7e"},
  --{"g/elias","klassenzimmer","elias"},
  --{"g/emirhan","faecher-sortierer","emirhan"},
- --{"g/illia","buecher-labyrinth","illia 6a"},
- --{"g/issa","rundlauf","issa 6b"},
+ {"g/illia","buecher-labyrinth","illia 6a"},
+ {"g/issa","rundlauf","issa 6b"},
  --{"g/ivan","sandwehen","ivan"},
- --{"g/jan","sammelspiel","jan 6d"},
- --{"g/joud","air hockey","joud 6e"},
+ {"g/jan","sammelspiel","jan 6d"},
+ {"g/joud","air hockey","joud 6e"},
  --{"g/lian","level","lian"},
  --{"g/mikolaj","suchspiel","mikolaj"},
  --{"g/musa","mach das","musa"},
  --{"g/nayla","level","nayla"},
- --{"g/raphael","entomme dem lehrer","raphael 7c"},
- --{"g/sam_g","schneeball","sam 6c"},
- --{"g/sam_h","mensa escape","sam 7a"},
+ {"g/raphael","entomme dem lehrer","raphael 7c"},
+ {"g/sam_g","schneeball","sam 6c"},
+ {"g/sam_h","mensa escape","sam 7a"},
  --{"g/samuel",  "verstecken",           "samuel"},
- --{"g/sean","schneeball","sean 7d"},
- --{"g/sophia","laufspiel","sophia 6e"},
- --{"g/toprak","basketball","toprak 7d"},
- --{"g/tyler","zu spaet","tyler 7a"}
+ {"g/sean","schneeball","sean 7d"},
+ {"g/sophia","laufspiel","sophia 6e"},
+ {"g/toprak","basketball","toprak 7d"},
+ {"g/tyler","zu spaet","tyler 7a"}
 }
 
 for i=1,#levels do add(story_order,i) end

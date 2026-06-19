@@ -97,7 +97,7 @@ function ss_check_finish()
  if coll~=nil and coll>0 then ss_finish(2) end
  if hit~=nil and hit==1 then ss_finish(2) end
  if failure==true then ss_finish(2) end
- if verloren==true then ss_finish(2) end
+ if gmo==1 then ss_finish(2) end
  if gamestate~=nil and gamestate==1 then
   if score~=nil and score>=10 then ss_finish(1)
   else ss_finish(2) end
