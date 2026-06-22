@@ -26,6 +26,9 @@ b_spr={1,2,3,4,33,34,35}
 
 function _update()
 	upd_balloons()
+ if btnp(4) or btnp(5) then
+  load("sursa.p8")
+ end
 end
 
 function _draw()
