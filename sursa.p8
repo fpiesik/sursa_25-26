@@ -50,6 +50,7 @@ for i=1,#levels do add(story_order,i) end
 -- cartdata works in pico-8 html exports.
 -- slots: 0 mode, 1 story pos,
 -- 2 lives, 3 result from level,
+-- 4 frame scene return,
 -- 10+ saved shuffled story order
 cartdata("surviving_sandwehen")
 
@@ -60,9 +61,27 @@ blink=0
 timer=0
 lives=1
 story_pos=1
+story_count=6
 
 function _init()
 	music(0)
+ local scene=dget(4)
+ if scene>0 then
+  dset(4,0)
+  if scene==1 then
+   load_story_order()
+   story_pos=max(1,dget(1))
+   lives=max(0,dget(2))
+   state="intro"
+  else
+   dset(0,0)
+   dset(1,1)
+   dset(2,1)
+   dset(3,0)
+   state="title"
+  end
+  return
+ end
  local mode=dget(0)
  local result=dget(3)
  if result>0 then
@@ -94,7 +113,7 @@ function shuffle_story_order()
 end
 
 function save_story_order()
- for i=1,#story_order do
+ for i=1,story_count do
   dset(9+i,story_order[i])
  end
 end
@@ -102,7 +121,7 @@ end
 function load_story_order()
  local ok=true
  story_order={}
- for i=1,#levels do
+ for i=1,story_count do
   local li=dget(9+i)
   if li<1 or li>#levels then ok=false end
   add(story_order,li)
@@ -114,8 +133,9 @@ function handle_story_result(result)
  if result==1 then
   story_pos+=1
   dset(1,story_pos)
-  if story_pos>#story_order then
-   state="graduation"
+  if story_pos>story_count then
+   dset(4,2)
+   load("_abschluss.p8")
   else
    state="intro"
   end
@@ -152,7 +172,8 @@ function start_story()
  dset(1,story_pos)
  dset(2,lives)
  dset(3,0)
- state="intro"
+ dset(4,1)
+ load("_einschulung.p8")
 end
 
 function update_single()
@@ -298,7 +319,7 @@ function draw_intro()
  draw_story_picture(li)
  --rectfill(4,70,123,116,0)
  --rect(4,70,123,116,7)
- center_print("spiel "..story_pos.."/"..#story_order,20,10)
+ center_print("klasse "..(story_pos+4),20,10)
  center_print(level[2],50,7)
  center_print("von "..level[3],58,6)
  center_print("c:start  x:zurueck",121,5)
