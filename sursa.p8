@@ -21,28 +21,28 @@ single_by_color=6
 single_sel_by_color=7
 
 levels={
- {"g/alissa","schulweg","alissa 7a"},
- {"g/damon","wort-sortierer","damon 7a"},
- {"g/elanur","hindernislauf","elanur 7e"},
- --{"g/elias","klassenzimmer","elias"},
- --{"g/emirhan","faecher-sortierer","emirhan"},
- {"g/illia","buecher-labyrinth","illia 6a"},
- {"g/issa","rundlauf","issa 6b"},
- --{"g/ivan","sandwehen","ivan"},
- {"g/jan","sammelspiel","jan 6d"},
- {"g/joud","air hockey","joud 6e"},
- --{"g/lian","level","lian"},
- --{"g/mikolaj","suchspiel","mikolaj"},
- --{"g/musa","mach das","musa"},
- --{"g/nayla","level","nayla"},
- {"g/raphael","entomme dem lehrer","raphael 7c"},
- {"g/sam_g","schneeball","sam 6c"},
- {"g/sam_h","mensa escape","sam 7a"},
- --{"g/samuel",  "verstecken",           "samuel"},
- {"g/sean","schneeball","sean 7d"},
- {"g/sophia","laufspiel","sophia 6e"},
- {"g/toprak","basketball","toprak 7d"},
- {"g/tyler","zu spaet","tyler 7a"}
+ {"alissa","schulweg","alissa 7a"},
+ {"damon","wort-sortierer","damon 7a"},
+ {"elanur","hindernislauf","elanur 7e"},
+ --{"elias","klassenzimmer","elias"},
+ --{"emirhan","faecher-sortierer","emirhan"},
+ {"illia","buecher-labyrinth","illia 6a"},
+ {"issa","rundlauf","issa 6b"},
+ --{"ivan","sandwehen","ivan"},
+ {"jan","sammelspiel","jan 6d"},
+ {"joud","air hockey","joud 6e"},
+ --{"lian","level","lian"},
+ --{"mikolaj","suchspiel","mikolaj"},
+ --{"musa","mach das","musa"},
+ --{"nayla","level","nayla"},
+ {"raphael","entomme dem lehrer","raphael 7c"},
+ {"sam_g","schneeball","sam 6c"},
+ {"sam_h","mensa escape","sam 7a"},
+ --{"samuel",  "verstecken",           "samuel"},
+ {"sean","schneeball","sean 7d"},
+ {"sophia","laufspiel","sophia 6e"},
+ {"toprak","basketball","toprak 7d"},
+ {"tyler","zu spaet","tyler 7a"}
 }
 
 for i=1,#levels do add(story_order,i) end
@@ -135,7 +135,7 @@ function handle_story_result(result)
   dset(1,story_pos)
   if story_pos>story_count then
    dset(4,2)
-   load("_abschluss.p8")
+   load("files/_abschluss.p8")
   else
    state="intro"
   end
@@ -173,7 +173,7 @@ function start_story()
  dset(2,lives)
  dset(3,0)
  dset(4,1)
- load("_einschulung.p8")
+ load("files/_einschulung.p8")
 end
 
 function update_single()
@@ -235,7 +235,7 @@ function update_end_scene()
 end
 
 function load_level(i)
- load(levels[i][1]..".p8")
+ load("files/"..levels[i][1]..".p8")
 end
 
 function _draw()
