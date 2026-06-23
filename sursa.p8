@@ -40,7 +40,7 @@ levels={
  {"sam_h","mensa escape","sam 7a"},
  --{"samuel",  "verstecken",           "samuel"},
  {"sean","schneeball","sean 7d"},
- {"sophia","laufspiel","sophia 6e"},
+ {"sophia","schuelerjagt","sophia 6e"},
  {"toprak","basketball","toprak 7d"},
  {"tyler","zu spaet","tyler 7a"}
 }

@@ -29,7 +29,7 @@ map(0,mapr)
 		spr(s,px,94,1,1)
 		spr(l,px2,70,4,4)
 		print(px,px,0)
-		print("run!",55,20,7)
+		print("run! ⬅️➡️",px,20,7)
  
 	end
 	

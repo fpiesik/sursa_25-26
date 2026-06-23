@@ -2,7 +2,7 @@ pico-8 cartridge // http://www.pico-8.com
 version 43
 __lua__
 p1 = 0
-d = 40
+d = 35
 xoff = 60
 yoff = 48
 s = 0.01 --- speed
@@ -91,7 +91,7 @@ function _draw()
  circfill(bx,by,br,9)
 
  print("ballx:"..bx,10,10,7)
- print("gmo: "..gmo,10,20,8)
+ print("drehen! ⬅️➡️",45,1,1)
 
  zeit:drw()
 
