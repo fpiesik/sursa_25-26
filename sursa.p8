@@ -65,6 +65,10 @@ story_count=6
 
 function _init()
 	music(0)
+ if gpio and gpio[0]==1 then
+  gpio[0]=0
+  reset_start_state()
+ end
  local scene=dget(4)
  if scene>0 then
   dset(4,0)
@@ -97,6 +101,15 @@ function _init()
  else
   state="title"
  end
+end
+
+function reset_start_state()
+ dset(0,0)
+ dset(1,1)
+ dset(2,1)
+ dset(3,0)
+ dset(4,0)
+ state="title"
 end
 
 function reset_story_order()
