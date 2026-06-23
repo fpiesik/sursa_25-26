@@ -32,7 +32,7 @@ end
 function _update()
 	upd_balloons()
  if btnp(4) or btnp(5) then
-  load("../sursa.p8")
+  load("sursa.p8")
  end
 end
 
