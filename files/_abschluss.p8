@@ -44,13 +44,13 @@ function _draw()
  x=5 -- x-position
  y=1 -- y-position
  cl=7 -- textfarbe
- za=8 -- zeilenabstad
+ za=6 -- zeilenabstad
  --drw_lehrer()
  --drw_uhr(20,20,5)
  --rectfill(x,y,x+100,y+50,6)
  ?"abschluss!",45,y,cl
- ?"deine arbeit hat sich gelohnt",x,y+za,cl
- --?"herr wegner dir deinen",x,y+za*2,cl
+ ?"deine arbeit hat sich gelohnt!",x,y+za,cl
+ ?"neue runde, mehr spiele mit c",x,y+za*2,cl
  --?"abschluss, stolz und",x,y+za*3,cl
  --?"zufrieden mit deinem weg",x,y+za*4,cl
 	--?"druecke c oder 🅾️",x,y+za*5,cl

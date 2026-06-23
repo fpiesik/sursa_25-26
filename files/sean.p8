@@ -19,15 +19,14 @@ verloren=false
 function _draw()
  ss_menu()
  cls()
- 
+ map()
+ print("wenn er nicht guckt",6,1,0)
  if verloren then
   print("versuchs nochmal😐!",10,40,8)
   print("punkte🐱 = "..punkte,10,55,9)
   print("❎ zum neustarten😐!!!!!!!!!",10,70,10)
   return
  end
- 
- map()
  spr(p,x,y,4,4)
  spr(4,30,20,4,4)
  spr(8,30,80,4,4)

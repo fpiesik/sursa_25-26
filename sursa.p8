@@ -39,7 +39,7 @@ levels={
  {"sam_g","schneeball","sam 6c"},
  {"sam_h","mensa escape","sam 7a"},
  --{"samuel",  "verstecken",           "samuel"},
- {"sean","schneeball","sean 7d"},
+ {"sean","schneeball-werfen","sean 7d"},
  {"sophia","schuelerjagt","sophia 6e"},
  {"toprak","basketball","toprak 7d"},
  {"tyler","zu spaet","tyler 7a"}

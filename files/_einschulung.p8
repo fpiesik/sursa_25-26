@@ -57,7 +57,7 @@ function _draw()
  ?"grundschule und wurdest",x,y+za,cl
  ?"an der sandwehen schule",x,y+za*2,cl
  ?"aufgenommen.",x,y+za*3,cl
-	?"deine abenteuer beginnt!",x,y+za*4,cl
+	?"dein abenteuer beginnt!",x,y+za*4,cl
  ?"druecke c",x,y+za*6,cl
 end
 
