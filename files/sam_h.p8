@@ -33,7 +33,7 @@ function spawn_food()
  add(foods,{
   x=rnd(120),
   y=ingo.y,
-  spd=2+rnd(2)
+  spd=1+rnd(2)
  })
 end
 
@@ -94,8 +94,8 @@ function _update()
   end
 
   -- collision
-  if abs(player.x-f.x)<6
-  and abs(player.y-f.y)<6 then
+  if abs(player.x-f.x)<2
+  and abs(player.y-f.y)<2 then
    gameover=true
   end
  end
