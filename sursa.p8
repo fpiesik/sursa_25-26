@@ -41,7 +41,7 @@ levels={
  --{"samuel",  "verstecken",           "samuel"},
  {"sean","schneeball-werfen","sean 7d"},
  {"sophia","schuelerjagt","sophia 6e"},
- {"toprak","basketball","toprak 7d"},
+ --{"toprak","basketball","toprak 7d"},
  {"tyler","zu spaet","tyler 7a"}
 }
 
