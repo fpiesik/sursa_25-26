@@ -8,7 +8,7 @@ function _init()
  frames={1,3,5,7}
  camera(8,32)
  e={sp=10,x=10,y=88,speed=1}
- ts_r = 150
+ ts_r = 100
  failure=false
  win=false
  sp = 29
@@ -73,7 +73,7 @@ function _update()
   failed=true 
  end
  if failed and lives>0 then
-  if btn(❎) then
+  if btn(4) then
    pl.x = 120
    pl.y = 104
    e.y = 88
@@ -105,12 +105,13 @@ function _draw()
  if lives == 1 then print(" ♥",70,38,8) print("♥ ♥",50,38,0) end
  print("escape the teacher! ➡️⬅️⬆️ ",20,140,12)
  print("you lose!",52,319,8)
- if lives>0 then print("retry? ❎",52,369,5) end
+ if lives>0 then print("retry? c",52,369,5) end
  print("you win!",55,189,10)
  print("escape the teacher! ➡️⬅️⬆️ ",20,270,12)
  if not win then
   rectfill(16,150,ts_r/2,154,5)
   spr(flr(sp),ts_r/2-4,149)
+  
  end
  if r>=50 then print("you'll never escape him",217,42,8) end
  //pset(110,8,11)

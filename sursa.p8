@@ -35,7 +35,7 @@ levels={
  --{"mikolaj","suchspiel","mikolaj"},
  --{"musa","mach das","musa"},
  --{"nayla","level","nayla"},
- {"raphael","entomme dem lehrer","raphael 7c"},
+ --{"raphael","entomme dem lehrer","raphael 7c"},
  {"sam_g","schneeball","sam 6c"},
  {"sam_h","mensa escape","sam 7a"},
  --{"samuel",  "verstecken",           "samuel"},
